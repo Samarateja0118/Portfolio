@@ -112,7 +112,7 @@
   @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
   /* STATS marquee + counters */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px 0}
+  .stats{max-width:620px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px 0}
   .stat .num{font-family:"Fraunces",serif;font-size:clamp(34px,5vw,52px);font-weight:600;color:var(--accent);line-height:1;letter-spacing:-.02em}
   .stat .lbl{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.03em}
   @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr);gap:30px 18px}}
@@ -217,6 +217,14 @@
   footer .social a{color:var(--muted);font-size:12px;font-family:"JetBrains Mono",monospace}
   footer .social a:hover{color:var(--accent)}
 
+  /* Section titles rise out of a mask rather than fading in — the same
+     treatment the name already gets, so the page animates one way. */
+  html.js .sec-title{display:inline-block;overflow:hidden;vertical-align:bottom}
+  html.js .sec-title > span{display:inline-block;transform:translateY(110%);
+    transition:transform .9s cubic-bezier(.2,.7,.2,1) .05s}
+  html.js .reveal.in .sec-title > span{transform:none}
+  @media(prefers-reduced-motion:reduce){html.js .sec-title > span{transform:none}}
+
   /* reveal (graceful: only hidden when JS on) */
   html.js .reveal{opacity:0;transform:translateY(26px)}
   .reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
@@ -268,21 +276,12 @@
   <div class="stats reveal">
     <div class="stat"><div class="num" data-to="10000" data-suffix="+">0</div><div class="lbl">Users reached</div></div>
     <div class="stat"><div class="num" data-to="30" data-suffix="%">0</div><div class="lbl">Reporting reduced</div></div>
-    <div class="stat"><div class="num" data-to="3.5" data-dec="1">0</div><div class="lbl">GPA / 4.0</div></div>
-    <div class="stat"><div class="num" data-to="8" data-suffix="+">0</div><div class="lbl">Projects shipped</div></div>
-  </div>
-</div>
-
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Python<span></span>LLMs<span></span>RAG<span></span>MCP<span></span>Data Pipelines<span></span>SQL<span></span>AWS<span></span>FastAPI<span></span>LangChain<span></span>PyTorch<span></span>ETL<span></span>Agents</span>
-    <span>Python<span></span>LLMs<span></span>RAG<span></span>MCP<span></span>Data Pipelines<span></span>SQL<span></span>AWS<span></span>FastAPI<span></span>LangChain<span></span>PyTorch<span></span>ETL<span></span>Agents</span>
-  </div>
+    </div>
 </div>
 
 <section id="about">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">01</span><span class="sec-title">About</span></div>
+    <div class="sec-head reveal"><span class="sec-num">01</span><span class="sec-title"><span>About</span></span></div>
     <div class="about-grid">
       <div class="reveal">
         <p>I'm an applied-AI and data engineer who likes building things end to end — and making them reliable enough to trust. My work spans <b>LLM applications</b> (prompt pipelines, retrieval/RAG, tool-using agents, MCP) and the <b>data engineering</b> underneath them (ETL pipelines, SQL, services on AWS).</p>
@@ -302,7 +301,7 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title">Skills</span></div>
+    <div class="sec-head reveal"><span class="sec-num">02</span><span class="sec-title"><span>Skills</span></span></div>
     <div class="skills">
       <div class="skill-group reveal"><h3>AI &amp; LLMs</h3><div class="tags"><span class="tag">LLM Integration</span><span class="tag">Prompt Engineering</span><span class="tag">RAG / Retrieval</span><span class="tag">Agent Frameworks</span><span class="tag">MCP</span><span class="tag">LangChain</span><span class="tag">NLP</span></div></div>
       <div class="skill-group reveal"><h3>Languages</h3><div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Java</span><span class="tag">Bash</span></div></div>
@@ -314,7 +313,7 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title">Experience</span></div>
+    <div class="sec-head reveal"><span class="sec-num">03</span><span class="sec-title"><span>Experience</span></span></div>
     <div class="exp-item reveal">
       <div class="exp-when">Jun 2023 – Aug 2024<span class="place">Hyderabad, India</span></div>
       <div><div class="exp-role">Software &amp; Data Engineering Intern</div><div class="exp-co">YuppTV</div>
@@ -330,7 +329,7 @@
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title">Projects</span></div>
+    <div class="sec-head reveal"><span class="sec-num">04</span><span class="sec-title"><span>Projects</span></span></div>
     <div class="proj-grid">
       <div class="card tilt reveal feature">
         <div class="card-tag">LLM Security · Backend</div><h3>Access AI Gateway</h3>
@@ -403,7 +402,7 @@
 
 <section id="education">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="sec-num">05</span><span class="sec-title">Education</span></div>
+    <div class="sec-head reveal"><span class="sec-num">05</span><span class="sec-title"><span>Education</span></span></div>
     <div class="edu-item reveal"><div class="edu-when">Aug 2024 – May 2026</div><div><div class="edu-deg">M.S., Computer Science</div><div class="edu-school">The George Washington University · Washington, D.C.</div><div class="edu-extra">GPA 3.50 / 4.00</div></div></div>
     <div class="edu-item reveal"><div class="edu-when">2020 – 2024</div><div><div class="edu-deg">B.Tech, Computer Science</div><div class="edu-school">Mahindra University · Hyderabad, India</div></div></div>
   </div>
